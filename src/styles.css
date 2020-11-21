@@ -1,10 +1,19 @@
-body {
-  padding: 0;
+html, body {
   margin: 0;
-  font-family: 'Open Sans', sans-serif;
-  background-color: #FAFAFA;
-  -webkit-font-smoothing: antialiased;
+  height: 100%;
+  background-color: #323232;
+  color: white;
 }
+
+footer{
+  height: 271px;
+  background: #393939;
+}
+
+nwt-drawer-container{
+  height: 100%;
+}
+
 * /deep/ * {
   font-family: inherit;
   font-size: 14px;

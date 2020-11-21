@@ -125,6 +125,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "nwt-school-front-ng10"
+    }
+  },
+  "defaultProject": "nwt-school-front-ng10",
+  "cli": {
+    "analytics": "d5b3a878-b834-4b8a-a682-95bae9aa7100"
+  }
 }
