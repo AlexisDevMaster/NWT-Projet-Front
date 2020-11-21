@@ -11,6 +11,7 @@ export class DrawerContainerComponent implements OnChanges {
 
   @Input()
   openNav: boolean;
+
   constructor() { }
 
   ngOnChanges(): void {

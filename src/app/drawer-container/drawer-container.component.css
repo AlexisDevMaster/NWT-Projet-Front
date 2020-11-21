@@ -7,16 +7,23 @@
 }
 
 .drawer-sidenav-content {
-  display: flex;
-  height: 100%;
-  align-items: center;
-  justify-content: center;
   color: white;
+  margin-left: 2rem;
+  margin-top: 1rem;
 }
 
 .drawer-sidenav {
-  padding: 20px;
+  /*padding: 20px;*/
   background: linear-gradient(135deg, #191919 0%,#2d2d2d 100%);
   color: white;
 }
+
+/*.category-carousel{*/
+/*  height: 300px;*/
+/*}*/
+
+/*.video-carousel{*/
+/*  height: 400px;*/
+/*}*/
+
 
