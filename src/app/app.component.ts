@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MatIconRegistry } from '@angular/material/icon';
 import {FormControl, Validators} from '@angular/forms';
+import {OwlOptions} from 'ngx-owl-carousel-o';
 
 @Component({
   selector: 'nwt-root',
@@ -10,18 +11,19 @@ import {FormControl, Validators} from '@angular/forms';
 })
 export class AppComponent implements OnInit {
 
-  isOpen: boolean;
-
   /**
    * Component constructor
    */
   constructor(private _matIconRegistry: MatIconRegistry, private _domSanitizer: DomSanitizer) {
   }
 
+  isOpen: boolean;
+
   /**
    * OnInit implementation
    */
   ngOnInit(): void {
+    this.isOpen = false;
     this._matIconRegistry.addSvgIcon('icon-delete', this._domSanitizer.bypassSecurityTrustResourceUrl('/assets/images/icon-delete.svg'));
     this._matIconRegistry.addSvgIcon('icon-edit', this._domSanitizer.bypassSecurityTrustResourceUrl('/assets/images/icon-edit.svg'));
     this._matIconRegistry.addSvgIcon('icon-maps', this._domSanitizer.bypassSecurityTrustResourceUrl('/assets/images/icon-maps.svg'));

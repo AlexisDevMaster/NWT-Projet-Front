@@ -30,6 +30,11 @@ import { SearchBarComponent } from './search-bar/search-bar.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {DrawerContainerComponent} from './drawer-container/drawer-container.component';
 import {SidenavContentComponent} from './sidenav-content/sidenav-content.component';
+import { DrawerContentComponent } from './drawer-content/drawer-content.component';
+import { CarouselModule } from 'ngx-owl-carousel-o';
+import { CarouselCategoryComponent } from './carousel-category/carousel-category.component';
+import { CarouselVideoComponent } from './carousel-video/carousel-video.component';
+import { CarouselUserComponent } from './carousel-user/carousel-user.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +51,10 @@ import {SidenavContentComponent} from './sidenav-content/sidenav-content.compone
     SearchBarComponent,
     DrawerContainerComponent,
     SidenavContentComponent,
+    DrawerContentComponent,
+    CarouselCategoryComponent,
+    CarouselVideoComponent,
+    CarouselUserComponent,
   ],
   imports: [
     BrowserModule,
@@ -67,6 +76,7 @@ import {SidenavContentComponent} from './sidenav-content/sidenav-content.compone
     FormsModule,
     MatAutocompleteModule,
     MatSidenavModule,
+    CarouselModule
   ],
   providers: [],
   bootstrap: [ AppComponent ]
