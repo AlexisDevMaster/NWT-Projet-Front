@@ -1,0 +1,43 @@
+<section>
+      <owl-carousel-o [options]="customOptions" >
+        <ng-container *ngFor="let item of carouselData; let i=index">
+          <ng-template carouselSlide [width]="400">
+            <div class="item">
+              <div class="video-card">
+                <div class="video-card-image">
+                  <a class="play-icon" href="/video/{{ v.url} "><i class="fas fa-play-circle"></i></a>
+                  <a href="/video/{{ v.url} ">
+                    <img class="img-fluid" src="assets/images/v1.png" alt=""></a>
+                  <div class="time">{{ v.time </div>
+                </div>
+                <div class="video-card-body">
+                  <div class="video-title">
+                    <a href="/video/{{ v.url ">{{ v.title </a>
+                  </div>
+                  <div class="video-page text-success">
+                    <a title="" data-placement="top" data-toggle="tooltip"
+                       href="/channel/{{ v.author_username }"
+                       data-original-title="{{ v.author_username }">
+                      {{ v.author_username }
+                    </a>
+<!--                    {% if v.author_verified == 1 %}-->
+                    <a title="" data-placement="top" data-toggle="tooltip" href=""
+                       data-original-title="Verified">
+                      <i class="fas fa-check-circle text-success"></i>
+                    </a>
+<!--                    {% endif %}-->
+                  </div>
+                  <div class="video-view">
+                     v.nb_view  views &nbsp;
+                     (100*v.nb_like/(v.nb_like+v.nb_dislike))|round(1, 'floor')  % &nbsp;
+                    <i class="fas fa-calendar-alt"></i>
+                    {{ v.upload_date }
+                  </div>
+                </div>
+              </div>
+            </div>
+          </ng-template>
+        </ng-container>
+
+      </owl-carousel-o>
+</section>
