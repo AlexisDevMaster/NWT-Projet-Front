@@ -1,0 +1,52 @@
+<mat-toolbar class="extend-toolbar">
+  <span>
+    <button mat-icon-button="" aria-label="Example icon-button with menu icon"
+            class="mat-focus-indicator example-icon mat-icon-button mat-button-base">
+      <span class="mat-button-wrapper" (click)="clickMenu()">
+        <mat-icon role="img" class="mat-icon notranslate material-icons mat-icon-no-color"
+                  aria-hidden="true">menu</mat-icon>
+      </span>
+      <span class="mat-ripple mat-button-ripple mat-button-ripple-round"></span>
+      <span class="mat-button-focus-overlay"></span>
+    </button>
+    <a [routerLink]="['/']">
+      <img src="assets/images/logo.svg" aria-label="nwt" alt="NWT">
+    </a>
+  </span>
+
+  <span class="flex">
+  </span>
+
+  <form class="search-input-center">
+    <mat-form-field class="search-input" >
+      <input type="text"
+             placeholder="Search"
+             aria-label="Number"
+             matInput
+             [formControl]=""
+             [matAutocomplete]="auto">
+      <mat-autocomplete #auto="matAutocomplete">
+        <mat-option  [value]="">
+        </mat-option>
+      </mat-autocomplete>
+    </mat-form-field>
+  </form>
+
+  <span>
+    <a [routerLink]="['/people']">List</a>
+    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+      <mat-icon>account_circle</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>
+        <mat-icon>account_box</mat-icon>
+        <span>My account</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>login</mat-icon>
+        <span>Logout</span>
+      </button>
+    </mat-menu>
+  </span>
+
+</mat-toolbar>
