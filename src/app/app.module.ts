@@ -19,10 +19,18 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormComponent } from './shared/form/form.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { UpdateComponent } from './update/update.component';
 import { NaPipe } from './shared/pipes/na.pipe';
 import { BadgeDirective } from './shared/directives/badge.directive';
+import {MatMenuModule} from '@angular/material/menu';
+import { NgMatSearchBarModule } from 'ng-mat-search-bar';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { SearchBarComponent } from './search-bar/search-bar.component';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {DrawerContainerComponent} from './drawer-container/drawer-container.component';
+import {SidenavContentComponent} from './sidenav-content/sidenav-content.component';
+import { NavigationComponent } from './navigation/navigation.component';
 
 
 @NgModule({
@@ -36,7 +44,11 @@ import { BadgeDirective } from './shared/directives/badge.directive';
     FormComponent,
     UpdateComponent,
     NaPipe,
-    BadgeDirective
+    BadgeDirective,
+    SearchBarComponent,
+    DrawerContainerComponent,
+    SidenavContentComponent,
+    NavigationComponent
   ],
   imports: [
     BrowserModule,
@@ -52,7 +64,12 @@ import { BadgeDirective } from './shared/directives/badge.directive';
     MatDialogModule,
     MatInputModule,
     MatFormFieldModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatMenuModule,
+    NgMatSearchBarModule,
+    FormsModule,
+    MatAutocompleteModule,
+    MatSidenavModule,
   ],
   providers: [],
   bootstrap: [ AppComponent ]

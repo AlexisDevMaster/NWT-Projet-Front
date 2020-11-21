@@ -1,0 +1,16 @@
+mat-list-item *{
+  color: white;
+}
+
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+}
+
+.sidenav-title-color{
+  color:#ff516b;
+}
+
+.channel-sidebar-list-separator{
+  border-top: 1px solid #ff516b;
+}
