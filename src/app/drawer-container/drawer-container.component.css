@@ -1,0 +1,22 @@
+.drawer-container {
+  height: 100%;
+  width: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  background-color: #323232;
+  color: white;
+}
+
+.drawer-sidenav-content {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.drawer-sidenav {
+  padding: 20px;
+  background: linear-gradient(135deg, #191919 0%,#2d2d2d 100%);
+  color: white;
+}
+
