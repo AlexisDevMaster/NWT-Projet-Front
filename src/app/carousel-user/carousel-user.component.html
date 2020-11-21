@@ -1,0 +1,29 @@
+<section>
+  <owl-carousel-o [options]="customOptions">
+    <ng-container *ngFor="let item of carouselData; let i=index">
+      <ng-template carouselSlide [width]="300">
+        <div class="item">
+          <div class="mb-3">
+            <div class="channels-card">
+              <div class="channels-card-image">
+                <a href="#"><img class="img-fluid" src="assets/images/s2.png" alt=""></a>
+                <div class="channels-card-image-btn">
+                  <button type="button" class="btn btn-danger btn-sm">Subscribe
+                    <strong>1.4M</strong></button>
+                </div>
+              </div>
+              <div class="channels-card-body">
+                <div class="channels-title">
+                  <a href="#">Channels Name</a>
+                </div>
+                <div class="channels-view">
+                  382,323 subscribers
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </ng-container>
+  </owl-carousel-o>
+</section>
