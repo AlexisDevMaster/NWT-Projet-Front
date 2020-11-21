@@ -30,8 +30,6 @@ import { SearchBarComponent } from './search-bar/search-bar.component';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {DrawerContainerComponent} from './drawer-container/drawer-container.component';
 import {SidenavContentComponent} from './sidenav-content/sidenav-content.component';
-import { NavigationComponent } from './navigation/navigation.component';
-
 
 @NgModule({
   declarations: [
@@ -48,7 +46,6 @@ import { NavigationComponent } from './navigation/navigation.component';
     SearchBarComponent,
     DrawerContainerComponent,
     SidenavContentComponent,
-    NavigationComponent
   ],
   imports: [
     BrowserModule,
