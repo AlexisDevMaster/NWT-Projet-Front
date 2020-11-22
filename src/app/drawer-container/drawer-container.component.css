@@ -8,9 +8,7 @@
 
 .drawer-sidenav-content {
   color: white;
-  margin-left: 2rem;
-  margin-top: 1rem;
-  margin-bottom: 70px;
+  margin: 1rem 2rem 70px;
 }
 
 .drawer-sidenav {

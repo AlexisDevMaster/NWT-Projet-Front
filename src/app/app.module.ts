@@ -44,6 +44,9 @@ import { SplitPipe } from './shared/pipes/split.pipe';
 import { SplitTimePipe } from './shared/pipes/split-time.pipe';
 import { AgoPipe } from './shared/pipes/ago.pipe';
 import {TimeagoModule} from 'ngx-timeago';
+import {MatGridListModule} from '@angular/material/grid-list';
+import { CategoryComponent } from './category/category.component';
+import { VideosComponent } from './videos/videos.component';
 
 @NgModule({
   declarations: [
@@ -73,6 +76,8 @@ import {TimeagoModule} from 'ngx-timeago';
     SplitPipe,
     SplitTimePipe,
     AgoPipe,
+    CategoryComponent,
+    VideosComponent,
   ],
   imports: [
     BrowserModule,
@@ -95,7 +100,8 @@ import {TimeagoModule} from 'ngx-timeago';
     MatAutocompleteModule,
     MatSidenavModule,
     CarouselModule,
-    TimeagoModule.forRoot()
+    TimeagoModule.forRoot(),
+    MatGridListModule
   ],
   providers: [],
   bootstrap: [ AppComponent ]
