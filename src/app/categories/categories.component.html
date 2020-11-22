@@ -1,1 +1,40 @@
-<p>categories works!</p>
+<div class="main-title"><h4>Categories</h4></div>
+<hr>
+
+<mat-grid-list cols="8" rowHeight="200px" *ngIf="categories.length>0; else noCategoriesBlock">
+  <mat-grid-tile
+    *ngFor="let category of categories"
+    [colspan]="1"
+    [rowspan]="1">
+    <div class="mb-3 w-90">
+      <div class="channels-card">
+        <div class="channels-card-image">
+          <a href="/category/{{ category.url }}"><img class="img-fluid" src="assets/images/s4.png" alt=""></a>
+        </div>
+        <div class="channels-card-body">
+          <div class="channels-title">
+            <a href="/category/{{ category.url}}">{{ category.title }}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-grid-tile>
+</mat-grid-list>
+
+
+<mat-grid-list #noCategoriesBlock cols="1" rowHeight="500px">
+  <!--  <mat-grid-tile>-->
+  <!--    <div class="col-xl-2 col-sm-6 mb-3">-->
+  <!--      <div class="channels-card">-->
+  <!--        <div class="channels-card-image">-->
+  <!--          <a href="/category/{{ tile.text }}"><img class="img-fluid" src="assets/images/s4.png" alt=""></a>-->
+  <!--        </div>-->
+  <!--        <div class="channels-card-body">-->
+  <!--          <div class="channels-title">-->
+  <!--            <a href="/category/{{ tile.text}}">{{ tile.text }}</a>-->
+  <!--          </div>-->
+  <!--        </div>-->
+  <!--      </div>-->
+  <!--    </div>-->
+  <!--  </mat-grid-tile>-->
+</mat-grid-list>
