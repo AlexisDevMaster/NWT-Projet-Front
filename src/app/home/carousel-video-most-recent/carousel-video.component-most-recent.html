@@ -5,18 +5,18 @@
         <div class="item">
           <div class="video-card">
             <div class="video-card-image">
-              <a class="play-icon" href="/video/{{ v.url }} "><mat-icon class="fas">play_circle_outline</mat-icon></a>
-              <a href="/video/{{ v.url }} ">
+              <a class="play-icon" [routerLink]="['/video', v.url] "><mat-icon class="fas">play_circle_outline</mat-icon></a>
+              <a [routerLink]="['/video', v.url] ">
                 <img class="img-fluid" src="assets/images/v1.png" alt=""></a>
               <div class="time">{{ v.time | splitTime }} </div>
             </div>
             <div class="video-card-body">
               <div class="video-title">
-                <a href="/video/{{ v.url}}">{{ v.title}}</a>
+                <a [routerLink]="['/video', v.url]">{{ v.title}}</a>
               </div>
               <div class="video-page text-success">
                 <a title="" data-placement="top" data-toggle="tooltip"
-                   href="/channel/{{ v.author }}"
+                   [routerLink]="['/author', v.author|lowercase]"
                    data-original-title="{{ v.author }}">
                   {{ v.author }}
                 </a>

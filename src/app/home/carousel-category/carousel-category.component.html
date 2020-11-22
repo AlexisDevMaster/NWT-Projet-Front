@@ -2,9 +2,9 @@
       <owl-carousel-o [options]="customOptions">
         <ng-container *ngFor="let item of categories; let i=index">
           <ng-template carouselSlide [width]="90" >
-            <div class="item">
+            <div class="item" [routerLink]="['/category', item.url]">
               <div class="category-item">
-                <a [owlRouterLink]="['/category']">
+                <a>
                   <img class="img-fluid category-img" src="https://via.placeholder.com/600/56a8c2" alt="img 6">
                   <h6>{{item.title}}</h6>
                 </a>

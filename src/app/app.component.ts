@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MatIconRegistry } from '@angular/material/icon';
-import {FormControl, Validators} from '@angular/forms';
-import {OwlOptions} from 'ngx-owl-carousel-o';
 
 @Component({
   selector: 'nwt-root',

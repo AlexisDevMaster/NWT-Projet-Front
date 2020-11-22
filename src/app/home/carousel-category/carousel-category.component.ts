@@ -28,7 +28,7 @@ export class CarouselCategoryComponent implements OnInit {
     // { text: 'Slide 10', dotContent: 'text5'},
   ];
 
-  constructor(private _router: Router, private _categoriesService: CategoryService, private _dialog: MatDialog) {
+  constructor(private _router: Router, private _categoriesService: CategoryService) {
     this._categories = [];
   }
 

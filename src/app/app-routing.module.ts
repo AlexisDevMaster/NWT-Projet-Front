@@ -8,13 +8,20 @@ import {HistoryComponent} from './history/history.component';
 import {VideoComponent} from './video/video.component';
 import {CategoriesComponent} from './categories/categories.component';
 import {SubscriptionsComponent} from './subscriptions/subscriptions.component';
+import {CategoryComponent} from './category/category.component';
+import {VideosComponent} from './videos/videos.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
   { path: 'history', component: HistoryComponent },
-  { path: 'video', component: VideoComponent },
+
+  { path: 'video', component: VideosComponent },
+  { path: 'video/:url', component: VideoComponent },
+
   { path: 'categories', component: CategoriesComponent },
+  { path: 'category/:name', component: CategoryComponent },
+
   { path: 'subscriptions', component: SubscriptionsComponent },
   { path: 'people', component: PeopleComponent },
   { path: 'edit/:id', component: UpdateComponent },
