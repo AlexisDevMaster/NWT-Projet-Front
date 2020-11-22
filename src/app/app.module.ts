@@ -33,8 +33,17 @@ import {SidenavContentComponent} from './sidenav-content/sidenav-content.compone
 import { DrawerContentComponent } from './drawer-content/drawer-content.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { CarouselCategoryComponent } from './home/carousel-category/carousel-category.component';
-import { CarouselVideoComponent } from './home/carousel-video/carousel-video.component';
+import { CarouselVideoComponentMostRatedComponent } from './home/carousel-video-most-rated/carousel-video.component-most-rated';
+import {CarouselVideoComponentMostRecentComponent} from './home/carousel-video-most-recent/carousel-video.component-most-recent';
 import { CarouselUserComponent } from './home/carousel-user/carousel-user.component';
+import { HistoryComponent } from './history/history.component';
+import { VideoComponent } from './video/video.component';
+import { CategoriesComponent } from './categories/categories.component';
+import { SubscriptionsComponent } from './subscriptions/subscriptions.component';
+import { SplitPipe } from './shared/pipes/split.pipe';
+import { SplitTimePipe } from './shared/pipes/split-time.pipe';
+import { AgoPipe } from './shared/pipes/ago.pipe';
+import {TimeagoModule} from 'ngx-timeago';
 
 @NgModule({
   declarations: [
@@ -47,14 +56,23 @@ import { CarouselUserComponent } from './home/carousel-user/carousel-user.compon
     FormComponent,
     UpdateComponent,
     NaPipe,
+    SplitPipe,
     BadgeDirective,
     SearchBarComponent,
     DrawerContainerComponent,
     SidenavContentComponent,
     DrawerContentComponent,
     CarouselCategoryComponent,
-    CarouselVideoComponent,
+    CarouselVideoComponentMostRatedComponent,
+    CarouselVideoComponentMostRecentComponent,
     CarouselUserComponent,
+    HistoryComponent,
+    VideoComponent,
+    CategoriesComponent,
+    SubscriptionsComponent,
+    SplitPipe,
+    SplitTimePipe,
+    AgoPipe,
   ],
   imports: [
     BrowserModule,
@@ -76,7 +94,8 @@ import { CarouselUserComponent } from './home/carousel-user/carousel-user.compon
     FormsModule,
     MatAutocompleteModule,
     MatSidenavModule,
-    CarouselModule
+    CarouselModule,
+    TimeagoModule.forRoot()
   ],
   providers: [],
   bootstrap: [ AppComponent ]

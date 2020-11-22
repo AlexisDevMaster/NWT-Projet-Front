@@ -9,6 +9,9 @@ export const environment = {
     host: 'localhost',
     port: '3000',
     endpoints: {
+      allVideos: '/video',
+      mostRatedVideos: 'video-most-rated',
+      mostRecentVideos: 'video-most-recent',
       allCategories: '/category',
       allPeople: '/people',
       randomPeople: '/people/random',

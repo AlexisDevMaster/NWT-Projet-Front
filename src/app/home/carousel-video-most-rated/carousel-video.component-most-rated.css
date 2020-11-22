@@ -105,3 +105,11 @@ nwt-carousel-video{
   font-weight: 500;
   margin: 2px 0 0;
 }
+
+.video-rating{
+  display: inline-block;
+  color: #acacac;
+  font-size: 10px;
+  font-weight: 500;
+  margin: 2px 0 0;
+}

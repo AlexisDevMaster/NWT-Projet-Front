@@ -5,13 +5,6 @@ import {CategoryService} from '../../shared/services/category.service';
 import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 import {Category} from '../../shared/interfaces/category';
 
-export class CarouselData {
-  id?: string;
-  title?: string;
-  thumbnail?: string;
-  url?: string;
-}
-
 @Component({
   selector: 'nwt-carousel-category',
   templateUrl: './carousel-category.component.html',
@@ -77,7 +70,6 @@ export class CarouselCategoryComponent implements OnInit {
     this._categoriesService
       .fetch().subscribe((categories: Category[]) => {
         this._categories = categories;
-        console.log(this._categories);
       });
   }
 

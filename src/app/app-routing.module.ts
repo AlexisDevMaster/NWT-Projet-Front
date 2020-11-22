@@ -4,10 +4,18 @@ import { HomeComponent } from './home/home/home.component';
 import { PeopleComponent } from './people/people.component';
 import { UpdateComponent } from './update/update.component';
 import { PersonComponent } from './person/person.component';
+import {HistoryComponent} from './history/history.component';
+import {VideoComponent} from './video/video.component';
+import {CategoriesComponent} from './categories/categories.component';
+import {SubscriptionsComponent} from './subscriptions/subscriptions.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
+  { path: 'history', component: HistoryComponent },
+  { path: 'video', component: VideoComponent },
+  { path: 'categories', component: CategoriesComponent },
+  { path: 'subscriptions', component: SubscriptionsComponent },
   { path: 'people', component: PeopleComponent },
   { path: 'edit/:id', component: UpdateComponent },
   { path: 'person/:id', component: PersonComponent }

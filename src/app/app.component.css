@@ -1,4 +1,9 @@
 .main-root {
   display: flex;
   flex-direction: column;
+  overflow: hidden;
+}
+
+nwt-search-bar{
+  position: sticky;
 }
