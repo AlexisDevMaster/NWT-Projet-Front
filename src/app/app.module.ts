@@ -4,7 +4,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
+import { HomeComponent } from './home/home/home.component';
 import { HttpClientModule } from '@angular/common/http';
 import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
@@ -32,9 +32,9 @@ import {DrawerContainerComponent} from './drawer-container/drawer-container.comp
 import {SidenavContentComponent} from './sidenav-content/sidenav-content.component';
 import { DrawerContentComponent } from './drawer-content/drawer-content.component';
 import { CarouselModule } from 'ngx-owl-carousel-o';
-import { CarouselCategoryComponent } from './carousel-category/carousel-category.component';
-import { CarouselVideoComponent } from './carousel-video/carousel-video.component';
-import { CarouselUserComponent } from './carousel-user/carousel-user.component';
+import { CarouselCategoryComponent } from './home/carousel-category/carousel-category.component';
+import { CarouselVideoComponent } from './home/carousel-video/carousel-video.component';
+import { CarouselUserComponent } from './home/carousel-user/carousel-user.component';
 
 @NgModule({
   declarations: [
