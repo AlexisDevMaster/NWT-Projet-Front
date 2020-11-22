@@ -1,4 +1,4 @@
-nwt-carousel-video{
+nwt-carousel-video-most-rated{
   overflow: hidden;
 }
 
@@ -52,7 +52,6 @@ nwt-carousel-video{
 }
 .play-icon .fas {
   bottom: 0;
-  height: 40px;
   left: 0;
   margin: auto;
   position: absolute;
@@ -66,7 +65,7 @@ nwt-carousel-video{
   border-radius: 2px;
   bottom: 0;
   color: #fff;
-  font-size: 35px;
+  font-size: 50px;
   left: 0;
   opacity: 0.4;
   position: absolute;
@@ -112,4 +111,14 @@ nwt-carousel-video{
   font-size: 10px;
   font-weight: 500;
   margin: 2px 0 0;
+}
+
+.user-verified-size{
+  font-size: 15px;
+  width: 10px;
+}
+.calendar-size{
+  font-size: 15px;
+  width: 10px;
+  margin-right: 5px;
 }

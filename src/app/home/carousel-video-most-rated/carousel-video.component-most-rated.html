@@ -5,7 +5,7 @@
             <div class="item">
               <div class="video-card">
                 <div class="video-card-image">
-                  <a class="play-icon" href="/video/{{ v.url }} "><i class="fas fa-play-circle"></i></a>
+                  <a class="play-icon" href="/video/{{ v.url }} "><mat-icon class="fas">play_circle_outline</mat-icon></a>
                   <a href="/video/{{ v.url }} ">
                     <img class="img-fluid" src="assets/images/v1.png" alt=""></a>
                   <div class="time">{{ v.time | splitTime }} </div>
@@ -23,7 +23,7 @@
 <!--                    {% if v.author_verified == 1 %}-->
                     <a title="" data-placement="top" data-toggle="tooltip" href=""
                        data-original-title="Verified">
-                      <i class="fas fa-check-circle text-success"></i>
+                      <mat-icon class="fas text-success user-verified-size">verified_user</mat-icon>
                     </a>
 <!--                    {% endif %}-->
                   </div>
@@ -32,7 +32,7 @@
                     <div class="video-rating" *ngIf="v.nb_like > 0 && v.nb_dislike > 0">
                       {{(100*v.nb_like/(v.nb_like+v.nb_dislike)) | number : '1.2-2'}}  % &nbsp;
                     </div>
-<!--                    <i class="fas fa-calendar-alt"></i>-->
+                    <mat-icon class="fas calendar-size">calendar_today</mat-icon>
                     {{ v.upload_date | timeago }}
                   </div>
                 </div>
