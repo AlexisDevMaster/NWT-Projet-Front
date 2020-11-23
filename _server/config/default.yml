@@ -6,8 +6,8 @@ server:
     - "http://127.0.0.1:4200"
     - "http://localhost:4200"
 swagger:
-  title: New Web's Technologies course with NestJS
-  description: The People API description
+  title: New Web's Technologies Project
+  description: The Video API description
   version: 1.0
-  tag: people
+  tag: video
   path: documentation

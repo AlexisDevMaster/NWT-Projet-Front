@@ -47,6 +47,10 @@ import {TimeagoModule} from 'ngx-timeago';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { CategoryComponent } from './category/category.component';
 import { VideosComponent } from './videos/videos.component';
+import {VgCoreModule} from '@videogular/ngx-videogular/core';
+import {VgControlsModule} from '@videogular/ngx-videogular/controls';
+import {VgOverlayPlayModule} from '@videogular/ngx-videogular/overlay-play';
+import {VgBufferingModule} from '@videogular/ngx-videogular/buffering';
 
 @NgModule({
   declarations: [
@@ -101,7 +105,11 @@ import { VideosComponent } from './videos/videos.component';
     MatSidenavModule,
     CarouselModule,
     TimeagoModule.forRoot(),
-    MatGridListModule
+    MatGridListModule,
+    VgCoreModule,
+    VgControlsModule,
+    VgOverlayPlayModule,
+    VgBufferingModule
   ],
   providers: [],
   bootstrap: [ AppComponent ]

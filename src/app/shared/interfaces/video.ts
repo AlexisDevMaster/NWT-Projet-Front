@@ -10,6 +10,7 @@ export interface Video {
   author: string;
   description?: string;
   path: string;
+  type: string;
   thumbnail_path: string;
   nb_view: number;
   url: string;

@@ -16,17 +16,18 @@ export class VideoService {
 
   constructor(private _http: HttpClient) {
     this._defaultVideo = {
-      title: 'https://randomuser.me/api/portraits/lego/6.jpg',
+      title: 'No title',
       time: Date(),
       upload_date: Date(),
-      nb_like: 0,
-      nb_dislike: 0,
+      nb_like: 500,
+      nb_dislike: 30,
       author: 'Admin',
-      description: '',
+      description: 'No description',
       path:  '',
+      type: 'video/mp4',
       thumbnail_path: '',
-      nb_view: 0,
-      url: '',
+      nb_view: 5000,
+      url: 'default',
       categories: [{id: '', title: ''}]
     };
     this._backendURL = {};
@@ -39,7 +40,6 @@ export class VideoService {
 
     // build all backend urls
     Object.keys(environment.backend.endpoints).forEach(k => this._backendURL[ k ] = `${baseUrl}${environment.backend.endpoints[ k ]}`);
-    console.log(this._backendURL);
   }
 
   /**
@@ -75,8 +75,16 @@ export class VideoService {
    * Function to return one video for current id
    */
   fetchOne(id: string): Observable<Video> {
-    return this._http.get<Video>(this._backendURL.onePeople.replace(':id', id));
+    return this._http.get<Video>(this._backendURL.oneVideo.replace(':id', id));
   }
+
+  /**
+   * Function to return one video for current id
+   */
+  fetchOneByUrl(url: string): Observable<Video> {
+    return this._http.get<Video>(this._backendURL.oneVideoByUrl.replace(':url', url));
+  }
+
 
   /**
    * Function to create a new video

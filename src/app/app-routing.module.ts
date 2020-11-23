@@ -16,7 +16,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'history', component: HistoryComponent },
 
-  { path: 'video', component: VideosComponent },
+  { path: 'videos', component: VideosComponent },
   { path: 'video/:url', component: VideoComponent },
 
   { path: 'categories', component: CategoriesComponent },

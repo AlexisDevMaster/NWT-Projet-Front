@@ -15,7 +15,9 @@ export const environment = {
       allCategories: '/category',
       allPeople: '/people',
       randomPeople: '/people/random',
-      onePeople: '/people/:id'
+      onePeople: '/people/:id',
+      oneVideo: '/video/:id',
+      oneVideoByUrl: '/video/url/:url'
     }
   }
 };

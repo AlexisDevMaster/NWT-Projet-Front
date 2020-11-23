@@ -30,6 +30,7 @@
     "@nestjs/platform-fastify": "^7.4.4",
     "@nestjs/swagger": "^4.6.1",
     "@ng-bootstrap/ng-bootstrap": "^8.0.0",
+    "@videogular/ngx-videogular": "^2.1.0",
     "angular-responsive-carousel": "^1.5.11",
     "bootstrap": "^4.5.0",
     "class-transformer": "^0.3.1",
