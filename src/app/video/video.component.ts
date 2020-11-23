@@ -59,7 +59,6 @@ export class VideoComponent implements OnInit {
         this._video = video;
         this._video.path = this._baseUrl + '/public/videos/' + this._video.path;
         this._video.thumbnail_path = this._baseUrl + '/public/videos' + this._video.thumbnail_path;
-        console.log('Videi');
       }
     );
   }

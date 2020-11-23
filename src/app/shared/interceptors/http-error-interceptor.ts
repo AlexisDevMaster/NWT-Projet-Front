@@ -5,7 +5,7 @@ import {catchError} from 'rxjs/operators';
 import {Router} from '@angular/router';
 
 @Injectable()
-export class HttpErrorInterceptorService implements HttpInterceptor{
+export class HttpErrorInterceptor implements HttpInterceptor{
 
   constructor(public router: Router) {
   }
@@ -33,7 +33,7 @@ export class HttpErrorInterceptorService implements HttpInterceptor{
                 console.log(`redirect to login`);
                 handled = true;
                 break;
-              case 404:     // forbidden
+              case 404:     // not found
                 this.router.navigate(['/404']);
                 handled = true;
                 break;

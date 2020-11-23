@@ -53,7 +53,7 @@ import {VgOverlayPlayModule} from '@videogular/ngx-videogular/overlay-play';
 import {VgBufferingModule} from '@videogular/ngx-videogular/buffering';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { NotfoundComponent } from './notfound/notfound.component';
-import {HttpErrorInterceptorService} from './shared/services/http-error-interceptor.service';
+import {HttpErrorInterceptor} from './shared/interceptors/http-error-interceptor';
 
 @NgModule({
   declarations: [
@@ -116,7 +116,7 @@ import {HttpErrorInterceptorService} from './shared/services/http-error-intercep
     VgBufferingModule,
     MatExpansionModule
   ],
-  providers: [{ provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptorService, multi: true  } ],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true  } ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule {
