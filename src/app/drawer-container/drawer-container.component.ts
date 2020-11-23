@@ -12,15 +12,16 @@ export class DrawerContainerComponent implements OnChanges {
   @Input()
   openNav: boolean;
 
-  constructor() { }
-
-  ngOnChanges(): void {
-    console.log('ngOnChanges', this.openNav);
-    if (this.openNav) {
-      this.sidenav.open();
-    } else {
-      this.sidenav.close();
-    }
+  constructor() {
   }
 
+  ngOnChanges(): void {
+    if (this.sidenav) {
+      if (this.openNav) {
+        this.sidenav.open();
+      } else {
+        this.sidenav.close();
+      }
+    }
+  }
 }

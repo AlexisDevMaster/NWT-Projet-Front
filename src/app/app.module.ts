@@ -5,7 +5,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home/home.component';
-import { HttpClientModule } from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { MatButtonModule } from '@angular/material/button';
 import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
@@ -51,6 +51,9 @@ import {VgCoreModule} from '@videogular/ngx-videogular/core';
 import {VgControlsModule} from '@videogular/ngx-videogular/controls';
 import {VgOverlayPlayModule} from '@videogular/ngx-videogular/overlay-play';
 import {VgBufferingModule} from '@videogular/ngx-videogular/buffering';
+import {MatExpansionModule} from '@angular/material/expansion';
+import { NotfoundComponent } from './notfound/notfound.component';
+import {HttpErrorInterceptorService} from './shared/services/http-error-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -82,6 +85,7 @@ import {VgBufferingModule} from '@videogular/ngx-videogular/buffering';
     AgoPipe,
     CategoryComponent,
     VideosComponent,
+    NotfoundComponent,
   ],
   imports: [
     BrowserModule,
@@ -109,9 +113,10 @@ import {VgBufferingModule} from '@videogular/ngx-videogular/buffering';
     VgCoreModule,
     VgControlsModule,
     VgOverlayPlayModule,
-    VgBufferingModule
+    VgBufferingModule,
+    MatExpansionModule
   ],
-  providers: [],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptorService, multi: true  } ],
   bootstrap: [ AppComponent ]
 })
 export class AppModule {

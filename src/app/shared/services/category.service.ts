@@ -30,7 +30,6 @@ export class CategoryService {
 
     // build all backend urls
     Object.keys(environment.backend.endpoints).forEach(k => this._backendURL[ k ] = `${baseUrl}${environment.backend.endpoints[ k ]}`);
-    console.log(this._backendURL);
   }
 
   /**

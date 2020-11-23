@@ -10,6 +10,7 @@ import {CategoriesComponent} from './categories/categories.component';
 import {SubscriptionsComponent} from './subscriptions/subscriptions.component';
 import {CategoryComponent} from './category/category.component';
 import {VideosComponent} from './videos/videos.component';
+import {NotfoundComponent} from './notfound/notfound.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -25,7 +26,10 @@ const routes: Routes = [
   { path: 'subscriptions', component: SubscriptionsComponent },
   { path: 'people', component: PeopleComponent },
   { path: 'edit/:id', component: UpdateComponent },
-  { path: 'person/:id', component: PersonComponent }
+  { path: 'person/:id', component: PersonComponent },
+
+  {path: '404', component: NotfoundComponent},
+  {path: '**', redirectTo: '/404'}
 ];
 
 @NgModule({
