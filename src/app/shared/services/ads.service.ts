@@ -16,14 +16,6 @@ export class AdsService {
   ) {}
   private apiUrl = environment.backend.protocol + '://' + environment.backend.host + ':' + environment.backend.port;
 
-  // private xClientInfoHeader = {
-  //   appVersion: '1.0.0',
-  //   os: 'macOS',
-  //   osVersion: '10.14.5',
-  //   device: 'mac Mini',
-  //   lang: 'sv'
-  // };
-
   private addSource = new BehaviorSubject(false);
   currentAdd = this.addSource.asObservable();
   private formData = new BehaviorSubject(null);
@@ -31,7 +23,6 @@ export class AdsService {
 
   private httpOptions = {
     headers: new HttpHeaders()
-      // .append("X-ClientInfo", JSON.stringify(this.xClientInfoHeader))
       .append('Authorization', 'Bearer ' + this.getAccessToken())
   };
 

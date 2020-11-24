@@ -12,12 +12,19 @@ export const environment = {
       allVideos: '/video',
       mostRatedVideos: 'video-most-rated',
       mostRecentVideos: 'video-most-recent',
+
       allCategories: '/category',
+
       allPeople: '/people',
       randomPeople: '/people/random',
       onePeople: '/people/:id',
+
       oneVideo: '/video/:id',
-      oneVideoByUrl: '/video/url/:url'
+      oneVideoByUrl: '/video/url/:url',
+
+      oneUsers: '/users/:id',
+      oneUserByUsername: '/users/username/:username',
+      allUsers: '/users'
     }
   }
 };

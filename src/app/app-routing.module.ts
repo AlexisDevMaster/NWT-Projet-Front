@@ -13,6 +13,8 @@ import {VideosComponent} from './videos/videos.component';
 import {NotfoundComponent} from './notfound/notfound.component';
 import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
+import {AdsComponent} from './ads/ads.component';
+import {AdminComponent} from './admin/admin.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -30,6 +32,9 @@ const routes: Routes = [
   { path: 'people', component: PeopleComponent },
   { path: 'edit/:id', component: UpdateComponent },
   { path: 'person/:id', component: PersonComponent },
+
+  { path: 'admin', component: AdminComponent },
+
 
   {path: '404', component: NotfoundComponent},
   {path: '**', redirectTo: '/404'}

@@ -10,23 +10,16 @@ import {environment} from '../../../environments/environment';
 })
 export class AuthService {
   TOKEN_KEY = 'admin';
+  USERNAME_KEY = 'username';
 
   apiUrl = environment.backend.protocol + '://' + environment.backend.host + ':' + environment.backend.port;
 
   private userToken;
+  private _username: string;
 
-  // xClientInfoHeader = {
-  //   appVersion: '1.0.0',
-  //   os: 'macOS',
-  //   osVersion: '10.14.5',
-  //   device: 'mac Mini',
-  //   lang: 'sv'
-  // };
-  //
   httpOptions = {
     headers: new HttpHeaders({
       'Content-Type' : 'application/json'
-      // 'X-ClientInfo': JSON.stringify(this.xClientInfoHeader)
     })
   };
 
@@ -39,15 +32,14 @@ export class AuthService {
       username,
       password
     };
-    console.log(username);
-    console.log(password);
-
     return this.httpClient
       .post<{ access_token: string }>(endpoint, httpParams, this.httpOptions)
       .pipe(
         map(token => {
           this.userToken = token.access_token;
+          this._username = httpParams.username;
           this.storeToken();
+          this.storeUsername();
         })
       );
   }
@@ -63,21 +55,27 @@ export class AuthService {
       .post(endpoint, httpParams);
   }
 
-
+  get username(): string{
+    return this._username;
+  }
 
   logoutAndRedirect(): void {
     this.logout();
-    const url = '/login';
-    this.router.navigate([url]);
+    this.router.navigate(['/login']);
   }
 
   logout(): void {
     this.userToken = undefined;
     this.clearToken();
+    this._username = '';
   }
 
   getUserToken(): string {
     return this.userToken;
+  }
+
+  getUsername(): string {
+    return this._username;
   }
 
   isLoggedIn(): boolean {
@@ -88,8 +86,17 @@ export class AuthService {
     sessionStorage.setItem(this.TOKEN_KEY, this.getUserToken());
   }
 
+  storeUsername(): void {
+    sessionStorage.setItem(this.USERNAME_KEY, this.getUsername());
+  }
+
   clearToken(): void {
     sessionStorage.removeItem(this.TOKEN_KEY);
+    sessionStorage.removeItem(this.USERNAME_KEY);
+  }
+
+  getUsernameStored(): string{
+    return sessionStorage.getItem(this.USERNAME_KEY);
   }
 
   hasStoredToken(): boolean {

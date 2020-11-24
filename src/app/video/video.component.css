@@ -5,6 +5,10 @@
   color: #ffffff;
 }
 
+.user-verified-size{
+  font-size: 15px;
+}
+
 /* Video Page */
 .box{
   padding: 15px;
@@ -18,9 +22,7 @@
   float: right !important;
   margin: 0 0 14px;
 }
-/*.single-video-author {*/
-/*  text-align: center;*/
-/*}*/
+
 .single-video-author img {
   float: none;
   margin: 0 0 5px;

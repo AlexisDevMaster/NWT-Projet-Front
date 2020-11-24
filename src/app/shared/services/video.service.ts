@@ -19,14 +19,14 @@ export class VideoService {
       title: 'No title',
       time: Date(),
       upload_date: Date(),
-      nb_like: 500,
-      nb_dislike: 30,
+      nb_like: 0,
+      nb_dislike: 0,
       author: 'Admin',
       description: 'No description',
       path:  '',
       type: 'video/mp4',
       thumbnail_path: '',
-      nb_view: 5000,
+      nb_view: 0,
       url: 'default',
       categories: [{id: '', title: ''}]
     };
@@ -59,6 +59,7 @@ export class VideoService {
         defaultIfEmpty([])
       );
   }
+
 
   /**
    * Function to return one random video from videos list

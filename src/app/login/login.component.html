@@ -8,12 +8,12 @@
       <label>
         <h4 class="bold">Username</h4>
         <input
-          [class.error]="usernameControl.invalid && submitted || error"
+          [class.error]="usernameControl.invalid && _submitted || _error"
           class="form__input"
           formControlName="username"
           type="text"
         />
-        <div *ngIf="usernameControl.invalid && submitted" class="form__error">
+        <div *ngIf="usernameControl.invalid && _submitted" class="form__error">
           <p>Username required</p>
         </div>
       </label>
@@ -21,15 +21,15 @@
       <label>
         <h4 class="bold">Password</h4>
         <input
-          [class.error]="passwordControl.invalid && submitted || error"
+          [class.error]="passwordControl.invalid && _submitted || _error"
           class="form__input"
           formControlName="password"
           type="password"
         />
-        <div *ngIf="passwordControl.invalid && submitted" class="form__error">
+        <div *ngIf="passwordControl.invalid && _submitted" class="form__error">
           <p>Password required</p>
         </div>
-        <div *ngIf="error && !(passwordControl.invalid && submitted)" class="form__error">
+        <div *ngIf="_error && !(passwordControl.invalid && _submitted)" class="form__error">
           <p>Password invalid</p>
         </div>
       </label>

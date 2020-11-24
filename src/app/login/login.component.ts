@@ -15,8 +15,8 @@ import {Router} from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  submitted = false;
-  error = false;
+  _submitted = false;
+  _error = false;
 
   form = this.fb.group({
     username: ['', Validators.required],
@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
   }
 
   login(form: FormGroup): void {
-    this.submitted = true;
+    this._submitted = true;
     const { value, valid } = form;
     if (valid) {
       this.authService.login(value.username, value.password).subscribe(
@@ -49,8 +49,7 @@ export class LoginComponent implements OnInit {
           this.router.navigate([url]);
         },
         error => {
-          this.error = true;
-          console.log(error);
+          this._error = true;
         }
       );
     }

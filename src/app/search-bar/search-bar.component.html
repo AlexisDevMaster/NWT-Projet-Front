@@ -33,15 +33,19 @@
   </form>
 
   <span>
-    <a [routerLink]="['/people']">List</a>
-      <button mat-icon-button [matMenuTriggerFor]="menuConnected" aria-label="Example icon-button with a menu" *ngIf="isLogedIn()">
-        <mat-icon>account_circle</mat-icon>
-      </button>
 
-       <button mat-icon-button [matMenuTriggerFor]="menuNotConnected" aria-label="Example icon-button with a menu" *ngIf="!isLogedIn()">
-        <mat-icon>account_circle</mat-icon>
-      </button>
 
+    <span *ngIf="isLogedIn">{{getUsername()}}</span>
+
+    <button mat-icon-button [matMenuTriggerFor]="menuConnected" aria-label="Example icon-button with a menu"
+            *ngIf="isLogedIn()">
+      <mat-icon>account_circle</mat-icon>
+    </button>
+
+     <button mat-icon-button [matMenuTriggerFor]="menuNotConnected" aria-label="Example icon-button with a menu"
+             *ngIf="!isLogedIn()">
+      <mat-icon>account_circle</mat-icon>
+    </button>
 
     <mat-menu #menuNotConnected="matMenu">
       <button mat-menu-item [routerLink]="[ '/login' ]">

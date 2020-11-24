@@ -24,6 +24,10 @@ export class SearchBarComponent implements OnInit {
     return this._authService.hasStoredToken();
   }
 
+  getUsername(): string{
+    return this._authService.getUsernameStored();
+  }
+
   logout(): void {
     return this._authService.logoutAndRedirect();
   }

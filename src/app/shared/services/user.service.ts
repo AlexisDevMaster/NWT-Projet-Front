@@ -16,10 +16,12 @@ export class UserService {
 
   constructor(private _http: HttpClient) {
     this._defaultUser = {
-      photo: 'https://randomuser.me/api/portraits/lego/6.jpg',
-      firstname: 'firstname',
-      lastname: 'lastname',
-      email: 'email@ema.il',
+      id: '5fbc3bef49ba5b4ca3e4b42d',
+      thumbnail: 'https://randomuser.me/api/portraits/lego/6.jpg',
+      username: 'Username',
+      verified: true,
+      subscriptions: [],
+      likes: [],
     };
     this._backendURL = {};
 
@@ -68,6 +70,14 @@ export class UserService {
   fetchOne(id: string): Observable<User> {
     return this._http.get<User>(this._backendURL.oneUsers.replace(':id', id));
   }
+
+  /**
+   * Function to return one user for current id
+   */
+  fetchOneByUsername(username: string): Observable<User> {
+    return this._http.get<User>(this._backendURL.oneUserByUsername.replace(':username', username));
+  }
+
 
   /**
    * Function to create a new user

@@ -23,14 +23,8 @@ export class HttpErrorInterceptor implements HttpInterceptor{
           if (error.error instanceof ErrorEvent) {
           } else {
             switch (error.status) {
-              case 401:      // login
-                this.router.navigateByUrl('/login');
-                console.log(`redirect to login`);
-                handled = true;
-                break;
               case 403:     // forbidden
                 this.router.navigateByUrl('/login');
-                console.log(`redirect to login`);
                 handled = true;
                 break;
               case 404:     // not found
