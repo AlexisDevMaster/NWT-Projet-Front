@@ -1,4 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {AuthService} from '../shared/services/auth.service';
 
 @Component({
   selector: 'nwt-search-bar',
@@ -9,15 +10,22 @@ export class SearchBarComponent implements OnInit {
 
   @Output()
   open: EventEmitter<boolean> = new EventEmitter();
-  constructor() { }
+  constructor(private _authService: AuthService) {  }
 
   ngOnInit(): void {
   }
 
   clickMenu(): void {
     this.open.emit(true);
-    // console.log("click menu");
-    // console.log('header ', this.sidenav)
-    // this.sidenav.toggle();
   }
+
+  isLogedIn(): boolean {
+    // return false;
+    return this._authService.hasStoredToken();
+  }
+
+  logout(): void {
+    return this._authService.logoutAndRedirect();
+  }
+
 }

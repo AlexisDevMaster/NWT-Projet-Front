@@ -31,8 +31,6 @@ export class AppComponent implements OnInit {
   }
 
   navOpen($event): void {
-    // toggle condition here
     this.isOpen = !this.isOpen;
-    console.log('$navOpen');
   }
 }

@@ -54,6 +54,10 @@ import {VgBufferingModule} from '@videogular/ngx-videogular/buffering';
 import {MatExpansionModule} from '@angular/material/expansion';
 import { NotfoundComponent } from './notfound/notfound.component';
 import {HttpErrorInterceptor} from './shared/interceptors/http-error-interceptor';
+import {LoginComponent} from './login/login.component';
+import {RegisterComponent} from './register/register.component';
+import {AdsComponent} from './ads/ads.component';
+import {AdminComponent} from './admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -86,6 +90,14 @@ import {HttpErrorInterceptor} from './shared/interceptors/http-error-interceptor
     CategoryComponent,
     VideosComponent,
     NotfoundComponent,
+    LoginComponent,
+    RegisterComponent,
+    AppComponent,
+    FormComponent,
+    AdsComponent,
+    LoginComponent,
+    RegisterComponent,
+    AdminComponent,
   ],
   imports: [
     BrowserModule,

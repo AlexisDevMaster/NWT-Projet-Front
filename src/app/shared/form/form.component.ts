@@ -1,161 +1,158 @@
-import { Component, EventEmitter, Input, OnChanges, OnInit, Output } from '@angular/core';
-import { Person } from '../interfaces/person';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { CustomValidators } from './custom-validators';
+import { Component, OnInit } from '@angular/core';
+import {
+  FormControl,
+  FormGroup,
+  FormBuilder,
+  Validators
+} from '@angular/forms';
+import {Add} from '../interfaces/add';
+import {AdsService} from '../services/ads.service';
+import {AuthService} from '../services/auth.service';
+
 
 @Component({
   selector: 'nwt-form',
   templateUrl: './form.component.html',
-  styleUrls: [ './form.component.css' ]
+  styleUrls: ['./form.component.scss']
 })
-export class FormComponent implements OnInit, OnChanges {
-  // private property to store update mode flag
-  private _isUpdateMode: boolean;
-  // private property to store model value
-  private _model: Person;
-  // private property to store cancel$ value
-  private readonly _cancel$: EventEmitter<void>;
-  // private property to store submit$ value
-  private readonly _submit$: EventEmitter<Person>;
-  // private property to store form value
-  private readonly _form: FormGroup;
+export class FormComponent implements OnInit {
+  exists = false;
+  submitted = false;
+  add: Add;
 
-  /**
-   * Component constructor
-   */
-  constructor() {
-    this._submit$ = new EventEmitter<Person>();
-    this._cancel$ = new EventEmitter<void>();
-    this._form = this._buildForm();
-  }
+  linkReg =
+    '(http://www.|https://www.|http://|https://)?[a-z0-9]+([-.]{1}[a-z0-9]+)*.[a-z]{2,5}(:[0-9]{1,5})?(/.*)';
+  fileName;
+  places = [1, 2, 3, 4];
+  default = 1;
+  formData: Add;
+  file: File;
 
-  /**
-   * Sets private property _model
-   */
-  @Input()
-  set model(model: Person) {
-    this._model = model;
-  }
+  form = this.fb.group({
+    title: ['', Validators.required],
+    text: ['', Validators.required],
+    url: ['', [Validators.required, Validators.pattern(this.linkReg)]],
+    // imageUrl: [null, [Validators.required, Validators.pattern(this.linkReg)]],
+    order: ['', Validators.required]
+  });
 
-  /**
-   * Returns private property _model
-   */
-  get model(): Person {
-    return this._model;
-  }
+  constructor(
+    private fb: FormBuilder,
+    private adsService: AdsService,
+    private authService: AuthService
+  ) {}
 
-  /**
-   * Returns private property _form
-   */
-  get form(): FormGroup {
-    return this._form;
-  }
-
-  /**
-   * Returns private property _isUpdateMode
-   */
-  get isUpdateMode(): boolean {
-    return this._isUpdateMode;
-  }
-
-  /**
-   * Returns private property _cancel$
-   */
-  @Output('cancel')
-  get cancel$(): EventEmitter<void> {
-    return this._cancel$;
-  }
-
-  /**
-   * Returns private property _submit$
-   */
-  @Output('submit')
-  get submit$(): EventEmitter<Person> {
-    return this._submit$;
-  }
-
-  /**
-   * OnInit implementation
-   */
   ngOnInit(): void {
-  }
-
-  /**
-   * Function to handle component update
-   */
-  ngOnChanges(record): void {
-    if (record.model && record.model.currentValue) {
-      this._model = record.model.currentValue;
-      this._isUpdateMode = true;
-    } else {
-      this._model = {
-        photo: 'https://randomuser.me/api/portraits/lego/6.jpg',
-        firstname: '',
-        lastname: '',
-        entity: 'LMFI',
-        email: '',
-        phone: '',
-        address: {
-          postalCode: '',
-          street: '',
-          city: ''
-        },
-        isManager: false
-      };
-      this._isUpdateMode = false;
-    }
-
-    // update form's values with model
-    this._form.patchValue(this._model);
-  }
-
-  /**
-   * Function to emit event to cancel process
-   */
-  cancel(): void {
-    this._cancel$.emit();
-  }
-
-  /**
-   * Function to emit event to submit form and person
-   */
-  submit(person: Person): void {
-    this._submit$.emit(person);
-  }
-
-  /**
-   * Function handle isManager checkbox value change
-   */
-  isManagerChecked(checked: boolean): void {
-    this._form.patchValue({ isManager: checked });
-  }
-
-  /**
-   * Function to build our form
-   */
-  private _buildForm(): FormGroup {
-    return new FormGroup({
-      id: new FormControl(),
-      photo: new FormControl(),
-      firstname: new FormControl('', Validators.compose([
-        Validators.required, Validators.minLength(2)
-      ])),
-      lastname: new FormControl('', Validators.compose([
-        Validators.required, Validators.minLength(2)
-      ])),
-      entity: new FormControl(),
-      email: new FormControl('', Validators.compose([
-        Validators.required, CustomValidators.googleEmail
-      ])),
-      phone: new FormControl('', Validators.compose([
-        Validators.required, Validators.pattern('(0|\\+33)\\d{9}')
-      ])),
-      address: new FormGroup({
-        street: new FormControl('', Validators.required),
-        city: new FormControl('', Validators.required),
-        postalCode: new FormControl('', Validators.required)
-      }),
-      isManager: new FormControl()
+    this.adsService.currentForm.subscribe(form => {
+      this.formData = form;
+      if (this.formData) {
+        this.form.controls.title.setValue(this.formData.title);
+        this.form.controls.text.setValue(this.formData.text);
+        this.form.controls.url.setValue(this.formData.url);
+        // this.form.controls["imageUrl"].setValue(this.formData.imageUrl);
+        this.form.controls.order.setValue(this.formData.order + 1);
+        this.fileName = this.formData.imageUrl
+          ? this.formData.imageUrl.replace(/^.*[\\\/]/, '')
+          : this.formData.imageUrl;
+      }
     });
+  }
+
+  get nameControl(): FormControl {
+    return this.form.get('title') as FormControl;
+  }
+
+  get textControl(): FormControl {
+    return this.form.get('text') as FormControl;
+  }
+
+  get linkControl(): FormControl {
+    return this.form.get('url') as FormControl;
+  }
+
+  get imageControl(): FormControl {
+    return this.form.get('imageUrl') as FormControl;
+  }
+
+  get placeControl(): FormControl {
+    return this.form.get('order') as FormControl;
+  }
+
+  openFileBrowser(event): void {
+    event.preventDefault();
+    const inp: HTMLElement = document.getElementById(
+      'imageBrowser'
+    ) as HTMLElement;
+    const input = document.getElementById('imageBrowser') as HTMLInputElement;
+    input.addEventListener('change', () => {
+      const title = input.value.split(/\\|\//).pop();
+      const truncated = title.length > 20 ? title.substr(title.length - 20) : title;
+
+      this.fileName = truncated;
+    });
+    inp.click();
+  }
+
+  imageChange(event): void {
+    this.file = event.target.files[0];
+  }
+
+  createAdd(form: FormGroup): void {
+    this.submitted = true;
+    const { value, valid } = form;
+
+    const add = {
+      title: form.value.title,
+      order: form.value.order - 1,
+      text: form.value.text,
+      url: form.value.url
+    };
+
+    if (valid) {
+      if (this.formData !== null) {
+        const addUpdate: Add = {
+          ...add,
+          imageUrl: this.formData.imageUrl,
+          _id: this.formData._id
+        };
+        if (this.file) {
+          addUpdate.file = this.file;
+        }
+
+        this.adsService.updateAdd(addUpdate, addUpdate._id).subscribe(
+          data => {
+            this.reset();
+            this.adsService.changeForm(null);
+          },
+          error => {
+            console.log(error);
+            if (error.status === 401) {
+              this.authService.logoutAndRedirect();
+            }
+          }
+        );
+      }
+      if (this.formData === null) {
+        this.adsService.newAdd(add, this.file).subscribe(
+          data => {
+            this.reset();
+          },
+          error => {
+            console.log(error);
+            if (error.status === 401) {
+              this.authService.logoutAndRedirect();
+            }
+          }
+        );
+      }
+    }
+  }
+
+  private reset(): void {
+    this.form.reset();
+    this.adsService.changeAdd(true);
+    this.submitted = false;
+    this.file = null;
+    this.fileName = null;
   }
 }

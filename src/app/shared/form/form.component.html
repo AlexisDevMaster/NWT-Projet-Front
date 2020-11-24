@@ -1,108 +1,151 @@
-<h2 mat-dialog-title *ngIf="isUpdateMode">Update {{ form.get('firstname').value }} {{ form.get('lastname').value }}</h2>
-<h2 mat-dialog-title *ngIf="!isUpdateMode">Create new person</h2>
+<div class="container">
+  <h1 class="bold header">Add new campaign</h1>
 
-<mat-dialog-content>
-  <form novalidate [formGroup]="form" >
+  <div class="form">
+    <form [formGroup]="form" (ngSubmit)="createAdd(form)">
+      <label>
+        <h4 class="bold">Campaign heading</h4>
+        <input
+          [class.error]="
+            nameControl.invalid &&
+            (nameControl.dirty || nameControl.touched || submitted)
+          "
+          class="form__input"
+          formControlName="title"
+          type="text"
+        />
+        <div
+          *ngIf="
+            nameControl.invalid &&
+            (nameControl.dirty || nameControl.touched || submitted)
+          "
+          class="form__error"
+        >
+          <p>Must be filled</p>
+        </div>
+      </label>
 
-    <p *ngIf="isUpdateMode">
-      <span style="width:100%">ID (disabled)</span><br/>
-      <span style="width:100%">{{model.id}}</span>
-    </p>
+      <label>
+        <h4 class="bold">Text</h4>
+        <textarea
+          [class.error]="
+            textControl.invalid &&
+            (textControl.dirty || textControl.touched || submitted)
+          "
+          class="form__input"
+          formControlName="text"
+          id="textarea"
+          type="text"
+        ></textarea>
+        <div
+          *ngIf="
+            textControl.invalid &&
+            (textControl.dirty || textControl.touched || submitted)
+          "
+          class="form__error"
+        >
+          <p>Must be filled</p>
+        </div>
+      </label>
 
-    <table class="full-width" cellspacing="0">
-      <tr>
-        <td>
-          <mat-form-field class="full-width" [class.mgb15]="form.get('firstname').dirty && form.get('firstname').invalid">
-            <input matInput placeholder="First name" formControlName="firstname" minlength="2" required name="firstname" />
-            <mat-error *ngIf="form.get('firstname').dirty && form.get('firstname').hasError('required')">
-              First name is <strong>required</strong>
-            </mat-error>
-            <mat-error *ngIf="form.get('firstname').dirty && form.get('firstname').hasError('minlength')">
-              First name is <strong>2 chars min</strong>
-            </mat-error>
-          </mat-form-field>
-          <mat-form-field class="full-width">
-            <input matInput placeholder="Last Name" formControlName="lastname" minlength="2" required name="lastname" />
-            <mat-error *ngIf="form.get('lastname').dirty && form.get('lastname').hasError('required')">
-              Last name is <strong>required</strong>
-            </mat-error>
-            <mat-error *ngIf="form.get('lastname').dirty && form.get('lastname').hasError('minlength')">
-              Last name is <strong>2 chars min</strong>
-            </mat-error>
-          </mat-form-field>
-        </td>
-        <td class="align-right">
-          <!-- not required by API, so we put static content which is not editable and not sent to the API -->
-          <img width="112" [src]="form.get('photo').value"/>
-        </td>
-      </tr>
-    </table>
+      <label>
+        <h4 class="bold">Link</h4>
+        <input
+          [class.error]="
+            linkControl.invalid &&
+            (linkControl.dirty || linkControl.touched || submitted)
+          "
+          class="form__input"
+          formControlName="url"
+          type="text"
+        />
+        <div *ngIf="
+            linkControl.invalid &&
+            (linkControl.dirty || linkControl.touched || submitted)
+          "
+          class="form__error"
+        >
+          <p>Invalid link</p>
+        </div>
+      </label>
 
-    <p>
-      <mat-form-field class="full-width">
-        <input matInput placeholder="Email" formControlName="email" required name="email" />
-        <mat-error *ngIf="form.get('email').dirty && form.get('email').hasError('required')">
-          Email is <strong>required</strong>
-        </mat-error>
-        <mat-error *ngIf="form.get('email').dirty && !form.get('email').hasError('required') && form.get('email').hasError('googleEmail')">
-          Invalid email <strong>(ex: name.firstname@gmail.com)</strong>
-        </mat-error>
-      </mat-form-field>
-    </p>
+      <!-- <label>
+        <h4 class="bold">LADDA UPP BILD</h4>
+        <input
+          [class.error]="
+            imageControl.invalid &&
+            (imageControl.dirty || imageControl.touched || submitted)
+          "
+          class="form__input"
+          formControlName="imageUrl"
+          type="text"
+        />
+        <div
+          *ngIf="
+            imageControl.invalid &&
+            (imageControl.dirty || imageControl.touched || submitted)
+          "
+          class="form__error"
+        >
+          <p>Länken är ogiltig</p>
+        </div>
+      </label> -->
 
-    <p formGroupName="address">
-      <mat-form-field class="full-width">
-        <input matInput placeholder="Address" formControlName="street" required name="street"/>
-        <mat-error *ngIf="form.get('address').get('street').dirty && form.get('address').get('street').hasError('required')">
-          Address is <strong>required</strong>
-        </mat-error>
-      </mat-form-field>
-    </p>
+      <label>
+        <h4 class="bold">UPLOAD</h4>
+      </label>
+      <div class="form__upload">
+        <button (click)="openFileBrowser($event)" class="form__upload-btn">
+          Browse
+        </button>
+        <input
+          [class.error]="!fileName && submitted"
+          placeholder="Select a file"
+          class="form__input"
+          id="imgName"
+          readonly
+          type="text"
+          [value]="fileName ? fileName : ''"
+        />
+      </div>
 
-    <table class="full-width" cellspacing="0" formGroupName="address">
-      <tr>
-        <td>
-          <mat-form-field class="full-width">
-            <input matInput placeholder="City" formControlName="city" required name="city"/>
-            <mat-error *ngIf="form.get('address').get('city').dirty && form.get('address').get('city').hasError('required')">
-              City is <strong>required</strong>
-            </mat-error>
-          </mat-form-field>
-        </td>
-        <td>
-          <mat-form-field class="full-width">
-            <input matInput placeholder="Postal Code" formControlName="postalCode" required name="postalCode"/>
-            <mat-error *ngIf="form.get('address').get('postalCode').dirty && form.get('address').get('postalCode').hasError('required')">
-              Postal Code is <strong>required</strong>
-            </mat-error>
-          </mat-form-field>
-        </td>
-      </tr>
-    </table>
+      <input
 
-    <p>
-      <mat-form-field class="full-width">
-        <input matInput placeholder="Phone (ex: 0612345678)" formControlName="phone" required name="phone" />
-        <mat-error *ngIf="form.get('phone').dirty && form.get('phone').hasError('required')">
-          Phone is <strong>required</strong>
-        </mat-error>
-        <mat-error *ngIf="form.get('phone').dirty && form.get('phone').hasError('pattern')">
-          Phone number must be <strong>a french number</strong>
-        </mat-error>
-      </mat-form-field>
-    </p>
+        (change)="imageChange($event)"
+        accept=".gif,.jpg,.jpeg,.png"
+        id="imageBrowser"
+        style="display: none;"
+        type="file"
+      />
 
-    <p>
-      <mat-checkbox formControlName="isManager" name="isManager" (change)="isManagerChecked($event.checked)">Manager</mat-checkbox>
-    </p>
+      <h4 class="bold mt">PLACING</h4>
 
-    <!-- required by API, so we put static content which is not editable but sent to the API -->
-    <input type="hidden" formControlName="entity" name="entity">
-  </form>
-</mat-dialog-content>
+      <div class="form__submit">
+        <!-- <div class="select-style">
+          <select formControlName="order">
+            <option *ngFor="let order of places" [ngValue]="order">
+              {{ order }}
+            </option>
+          </select>
+        </div> -->
 
+        <div class="select-style">
+          <input
+            [class.error]="
+              placeControl.invalid &&
+              (placeControl.dirty || placeControl.touched || submitted)
+            "
+            class="form__input"
+            formControlName="order"
+            oninput="validity.valid||(value='');"
+            min="1"
+            type="number"
+          />
+        </div>
+        <button type="submit" class="btn bold">PUBLISH</button>
+      </div>
 
-<mat-dialog-actions align="end">
-  <button mat-button type="button" (click)="cancel()">Cancel</button>
-  <button mat-button color="primary" type="submit" (click)="submit(form.value)" [disabled]="form.invalid">Save</button>
-</mat-dialog-actions>
+      <!-- <ng-content></ng-content> -->
+    </form>
+  </div>
+</div>
