@@ -1,23 +1,24 @@
 <section>
   <owl-carousel-o [options]="customOptions">
-    <ng-container *ngFor="let item of carouselData; let i=index">
+    <ng-container *ngFor="let user of users; let i=index">
       <ng-template carouselSlide [width]="300">
         <div class="item">
           <div class="mb-3">
             <div class="channels-card">
               <div class="channels-card-image">
-                <a href="#"><img class="img-fluid" src="assets/images/s2.png" alt=""></a>
+                <a href="#"><img class="img-fluid mb-2" src="{{user.thumbnail}}" alt=""></a>
                 <div class="channels-card-image-btn">
-                  <button type="button" class="btn btn-danger btn-sm">Subscribe
-                    <strong>1.4M</strong></button>
+                  <button type="button" class="btn btn-danger btn-sm">Subscribe</button>
+                  <button type="button" class="btn btn-outline-secondary btn-sm" *ngIf="isSubscribed === true;">Subscribed</button>
+                  <button class="btn btn-outline-danger btn-sm" type="button" *ngIf="isSubscribed === true;" >Subscribe</button>
                 </div>
               </div>
               <div class="channels-card-body">
                 <div class="channels-title">
-                  <a href="#">Channels Name</a>
+                  <a href="#">{{user.username}}</a>
                 </div>
                 <div class="channels-view">
-                  382,323 subscribers
+                  {{user.subscriptions.length|thousandSuffixes}} subscribers
                 </div>
               </div>
             </div>

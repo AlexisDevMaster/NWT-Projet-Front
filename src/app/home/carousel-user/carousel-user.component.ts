@@ -1,15 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {OwlOptions} from 'ngx-owl-carousel-o';
+import {environment} from '../../../environments/environment';
+import {User} from '../../shared/interfaces/user';
+import {Router} from '@angular/router';
+import {UserService} from '../../shared/services/user.service';
+import {AuthService} from '../../shared/services/auth.service';
 
-export class CarouselData {
-  id?: string;
-  text: string;
-  dataMerge?: number;
-  width?: number;
-  dotContent?: string;
-  src?: string;
-  dataHash?: string;
-}
 
 @Component({
   selector: 'nwt-carousel-user',
@@ -18,27 +14,31 @@ export class CarouselData {
 })
 export class CarouselUserComponent implements OnInit {
 
-  carouselData: CarouselData[] = [
-    { text: 'Slide 1', src: 'assets/images/350x450&text=1.png', dataHash: 'one'},
-    { text: 'Slide 2', src: 'assets/images/350x650&text=2.png', dataHash: 'two'},
-    { text: 'Slide 3', src: 'assets/images/350x250&text=3-fallback.png', dataHash: 'three'},
-    { text: 'Slide 4', src: 'assets/images/350x250&text=4.png', dataHash: 'four'},
-    { text: 'Slide 5', src: 'assets/images/350x250&text=5.png', dataHash: 'five'},
-    // { text: 'Slide 6', dotContent: 'text5'},
-    // { text: 'Slide 7', dotContent: 'text5'},
-    // { text: 'Slide 8', dotContent: 'text5'},
-    // { text: 'Slide 9', dotContent: 'text5'},
-    // { text: 'Slide 10', dotContent: 'text5'},
-  ];
 
-  constructor() { }
+  private _users: User[];
+  private _baseUrl: string;
+  private _isSubscribed: boolean[];
+  private _connectedUser: User;
+
+  constructor(private _router: Router, private _userService: UserService, private _authService: AuthService, private _usersService: UserService) {
+    this._users = [];
+    this._baseUrl = `${environment.backend.protocol}://${environment.backend.host}`;
+    if (environment.backend.port) {
+      this._baseUrl += `:${environment.backend.port}`;
+    }
+  }
+
+  @Input('connectedUser')
+  set connectedUser(value: User) {
+    this._connectedUser = value;
+  }
 
   customOptions: OwlOptions = {
-    loop: true,
+    loop: false,
     mouseDrag: true,
     touchDrag: true,
     pullDrag: true,
-    dots: true,
+    dots: false,
     navSpeed: 600,
     margin: 10,
     autoWidth: true,
@@ -57,7 +57,45 @@ export class CarouselUserComponent implements OnInit {
     nav: false
   };
 
+  /**
+   * Returns private property _categories
+   */
+  get users(): User[] {
+    return this._users;
+  }
+
+
+  get isSubscribed(): boolean[] {
+    return this._isSubscribed;
+  }
+
   ngOnInit(): void {
+    this._userService
+      .fetch().subscribe((users: User[]) => {
+      this._users = users;
+      this._users.forEach(obj => {
+        obj.thumbnail = this._baseUrl + '/public/users/' + obj.thumbnail;
+        this._userService.test404Resources(obj.thumbnail).subscribe(
+          (_) => console.log(obj.thumbnail),
+          error => {
+            if (error.status === 404) {
+              obj.thumbnail = 'assets/images/no_preview_user.png';
+            }
+          }
+        );
+      });
+
+      if (this.isLogedIn()) {
+        this._users.forEach((obj2, index) => {
+          this._isSubscribed.push(this._connectedUser.subscriptions.find(o => o.username === obj2.username));
+        });
+      }
+    });
+  }
+
+  isLogedIn(): boolean {
+    // return false;
+    return this._authService.hasStoredToken();
   }
 
 }

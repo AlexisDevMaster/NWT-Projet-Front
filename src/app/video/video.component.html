@@ -46,21 +46,7 @@
                           <mat-icon class="fas">thumb_up</mat-icon>
                         </button>
                         <div class="mt-1 text-nowrap" id="like3-bs3">
-                          <ng-template
-                            [ngIf]="video.nb_like <= 999 && video.nb_like >= 0">{{ video.nb_like }}</ng-template>
-                          <ng-template
-                            [ngIf]="video.nb_like <= 9999 && video.nb_like >= 1000">{{ video.nb_like |number:'1.0-2'}} K
-                          </ng-template>
-                          <ng-template
-                            [ngIf]="video.nb_like <= 99999 && video.nb_like >= 10000">{{ video.nb_like |number:'1.0-2'}}
-                            K
-                          </ng-template>
-                          <ng-template
-                            [ngIf]="video.nb_like <= 999999 && video.nb_like >= 100000">{{ video.nb_like |number:'1.0-2' }}
-                            K
-                          </ng-template>
-                          <ng-template [ngIf]="video.nb_like >= 1000000">{{ video.nb_like |number:'1.0-2'}} M
-                          </ng-template>
+                          {{ video.nb_like |thousandSuffixes}}
                         </div>
                       </div>
                     </div>
@@ -73,22 +59,7 @@
                           <mat-icon class="fas">thumb_down</mat-icon>
                         </button>
                         <div class="mt-1 text-nowrap" id="dislike3-bs3">
-                          <ng-template
-                            [ngIf]="video.nb_dislike <= 999 && video.nb_dislike >= 0">{{ video.nb_dislike }}</ng-template>
-                          <ng-template
-                            [ngIf]="video.nb_dislike <= 9999 && video.nb_dislike >= 1000">{{ video.nb_dislike |number:'1.0-1'}}
-                            K
-                          </ng-template>
-                          <ng-template
-                            [ngIf]="video.nb_dislike <= 99999 && video.nb_dislike >= 10000">{{ video.nb_dislike |number:'1.0-2'}}
-                            K
-                          </ng-template>
-                          <ng-template
-                            [ngIf]="video.nb_dislike <= 999999 && video.nb_dislike >= 100000">{{ video.nb_dislike |number:'1.0-2' }}
-                            K
-                          </ng-template>
-                          <ng-template [ngIf]="video.nb_dislike >= 1000000">{{ video.nb_dislike |number:'1.0-2'}} M
-                          </ng-template>
+                          {{ video.nb_dislike |thousandSuffixes}}
                         </div>
                       </div>
                     </div>
@@ -170,8 +141,8 @@
                   <mat-panel-description>
                   </mat-panel-description>
                 </mat-expansion-panel-header>
-                <ng-template *ngIf="video.description; else noDescription"><p>{{video.description}}</p></ng-template>
-                <ng-template #noDescription><p>No Comments</p></ng-template>
+                <ng-template *ngIf="video.description; else noComment"><p></p></ng-template>
+                <ng-template #noComment><p>No Comments</p></ng-template>
               </mat-expansion-panel>
             </mat-accordion>
           </div>

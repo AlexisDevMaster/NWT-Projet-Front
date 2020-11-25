@@ -24,7 +24,9 @@ export const environment = {
 
       oneUsers: '/users/:id',
       oneUserByUsername: '/users/username/:username',
-      allUsers: '/users'
+      allUsers: '/users',
+
+      publicRessourcesVideos: '/public/videos'
     }
   }
 };

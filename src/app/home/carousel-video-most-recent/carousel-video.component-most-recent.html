@@ -1,28 +1,28 @@
 <section>
-  <owl-carousel-o [options]="customOptions" >
+  <owl-carousel-o [options]="customOptions" (dragging)="isDragging = $event.dragging">
     <ng-container *ngFor="let v of videos; let i=index">
-      <ng-template carouselSlide [width]="400">
+      <ng-template carouselSlide dotContent="" [width]="400">
         <div class="item">
           <div class="video-card">
             <div class="video-card-image">
-              <a class="play-icon" [routerLink]="['/video', v.url] "><mat-icon class="fas">play_circle_outline</mat-icon></a>
-              <a [routerLink]="['/video', v.url] ">
-                <img class="img-fluid" src="assets/images/v1.png" alt=""></a>
+              <a class="play-icon" [owlRouterLink]="['/video', v.url]" [stopLink]="isDragging"><mat-icon class="fas">play_circle_outline</mat-icon></a>
+              <a [owlRouterLink]="['/video', v.url]" [stopLink]="isDragging">
+                <img class="img-fluid" src="{{v.thumbnail_path}}" alt=""></a>
               <div class="time">{{ v.time | splitTime }} </div>
             </div>
             <div class="video-card-body">
               <div class="video-title">
-                <a [routerLink]="['/video', v.url]">{{ v.title}}</a>
+                <a [owlRouterLink]="['/video', v.url]" [stopLink]="isDragging">{{ v.title}}</a>
               </div>
               <div class="video-page text-success">
                 <a title="" data-placement="top" data-toggle="tooltip"
-                   [routerLink]="['/author', v.author|lowercase]"
+                   [owlRouterLink]="['/author', v.author]" [stopLink]="isDragging"
                    data-original-title="{{ v.author }}">
                   {{ v.author }}
                 </a>
                 <!--                    {% if v.author_verified == 1 %}-->
                 <a title="" data-placement="top" data-toggle="tooltip" href=""
-                   data-original-title="Verified">
+                   data-original-title="Verified" *ngIf="user(v.author).verified===true">
                   <mat-icon class="fas text-success user-verified-size">verified_user</mat-icon>
                 </a>
                 <!--                    {% endif %}-->

@@ -1,1 +1,40 @@
-<p>category works!</p>
+<div class="main-title"><h4>Categories</h4></div>
+<hr>
+
+<mat-grid-list cols="8" rowHeight="200px" *ngIf="videos.length>0; else noCategoryVideosBlock">
+  <mat-grid-tile
+    *ngFor="let video of videos"
+    [colspan]="1"
+    [rowspan]="1">
+    <div class="mb-3 w-90">
+      <div class="channels-card">
+        <div class="channels-card-image">
+          <a [routerLink]="['/category', video.url] "><img class="img-fluid" src="assets/images/s4.png" alt=""></a>
+        </div>
+        <div class="channels-card-body">
+          <div class="channels-title">
+            <a [routerLink]="['/category', video.url]">{{ video.title }}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </mat-grid-tile>
+</mat-grid-list>
+
+
+<mat-grid-list #noCategoryVideosBlock cols="1" rowHeight="500px">
+  <!--  <mat-grid-tile>-->
+  <!--    <div class="col-xl-2 col-sm-6 mb-3">-->
+  <!--      <div class="channels-card">-->
+  <!--        <div class="channels-card-image">-->
+  <!--          <a href="/category/{{ tile.text }}"><img class="img-fluid" src="assets/images/s4.png" alt=""></a>-->
+  <!--        </div>-->
+  <!--        <div class="channels-card-body">-->
+  <!--          <div class="channels-title">-->
+  <!--            <a href="/category/{{ tile.text}}">{{ tile.text }}</a>-->
+  <!--          </div>-->
+  <!--        </div>-->
+  <!--      </div>-->
+  <!--    </div>-->
+  <!--  </mat-grid-tile>-->
+</mat-grid-list>

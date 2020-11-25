@@ -58,6 +58,7 @@ import {LoginComponent} from './login/login.component';
 import {RegisterComponent} from './register/register.component';
 import {AdsComponent} from './ads/ads.component';
 import {AdminComponent} from './admin/admin.component';
+import { ThousandSuffixesPipe } from './shared/pipes/thousand-suffixes.pipe';
 
 @NgModule({
   declarations: [
@@ -98,6 +99,7 @@ import {AdminComponent} from './admin/admin.component';
     LoginComponent,
     RegisterComponent,
     AdminComponent,
+    ThousandSuffixesPipe,
   ],
   imports: [
     BrowserModule,

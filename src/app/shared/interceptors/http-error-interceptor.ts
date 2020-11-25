@@ -27,10 +27,10 @@ export class HttpErrorInterceptor implements HttpInterceptor{
                 this.router.navigateByUrl('/login');
                 handled = true;
                 break;
-              case 404:     // not found
-                this.router.navigate(['/404']);
-                handled = true;
-                break;
+              // case 404:     // not found
+              //   this.router.navigate(['/404']);
+              //   handled = true;
+              //   break;
             }
           }
         }

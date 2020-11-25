@@ -30,9 +30,6 @@ export class VideoComponent implements OnInit {
 
   constructor(private _router: Router, private _activatedRoute: ActivatedRoute, private _videoService: VideoService,
               private _userService: UserService, private _authService: AuthService) {
-
-    console.log('Constructor call');
-
     this._url = this._activatedRoute.snapshot.url.pop().path;
     this._backendURL = {};
     this._baseUrl = `${environment.backend.protocol}://${environment.backend.host}`;
@@ -41,10 +38,7 @@ export class VideoComponent implements OnInit {
     }
     this._video = this._videoService.defaultVideo;
     this._user = this._userService.defaultUser;
-
     this.initVideo();
-
-
   }
 
   /**
@@ -105,7 +99,6 @@ export class VideoComponent implements OnInit {
                 } else {
                   this._isSubscribed = -1;
                 }
-                console.log(this._isSubscribed);
               });
             }
           }

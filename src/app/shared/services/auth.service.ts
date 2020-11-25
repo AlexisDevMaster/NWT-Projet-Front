@@ -27,7 +27,7 @@ export class AuthService {
 
   login(username: string, password: string): Observable<void> {
     console.log(this.apiUrl);
-    const endpoint = this.apiUrl + '/auth/login';
+    const endpoint = this.apiUrl + '/login';
     const httpParams = {
       username,
       password

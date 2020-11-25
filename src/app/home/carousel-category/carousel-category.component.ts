@@ -2,8 +2,8 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {OwlOptions} from 'ngx-owl-carousel-o';
 import {Router} from '@angular/router';
 import {CategoryService} from '../../shared/services/category.service';
-import {MatDialog, MatDialogRef} from '@angular/material/dialog';
 import {Category} from '../../shared/interfaces/category';
+import {environment} from '../../../environments/environment';
 
 @Component({
   selector: 'nwt-carousel-category',
@@ -14,30 +14,21 @@ export class CarouselCategoryComponent implements OnInit {
 
   // private property to store people value
   private _categories: Category[];
-
-  carouselData: Category[] = [
-    { title: 'Slide 1', thumbnail: 'assets/images/350x450&text=1.png', url: 'one'},
-    { title: 'Slide 2', thumbnail: 'assets/images/350x650&text=2.png', url: 'two'},
-    { title: 'Slide 3', thumbnail: 'assets/images/350x250&text=3-fallback.png', url: 'three'},
-    { title: 'Slide 4', thumbnail: 'assets/images/350x250&text=4.png', url: 'four'},
-    { title: 'Slide 5', thumbnail: 'assets/images/350x250&text=5.png', url: 'five'},
-    // { text: 'Slide 6', dotContent: 'text5'},
-    // { text: 'Slide 7', dotContent: 'text5'},
-    // { text: 'Slide 8', dotContent: 'text5'},
-    // { text: 'Slide 9', dotContent: 'text5'},
-    // { text: 'Slide 10', dotContent: 'text5'},
-  ];
+  private _baseUrl: string;
 
   constructor(private _router: Router, private _categoriesService: CategoryService) {
     this._categories = [];
+    this._baseUrl = `${environment.backend.protocol}://${environment.backend.host}`;
+    if (environment.backend.port) {
+      this._baseUrl += `:${environment.backend.port}`;
+    }
   }
 
   customOptions: OwlOptions = {
-    loop: true,
     mouseDrag: true,
     touchDrag: true,
     pullDrag: true,
-    dots: true,
+    dots: false,
     navSpeed: 600,
     margin: 10,
     autoWidth: true,
@@ -69,15 +60,26 @@ export class CarouselCategoryComponent implements OnInit {
   ngOnInit(): void {
     this._categoriesService
       .fetch().subscribe((categories: Category[]) => {
-        this._categories = categories;
+      this._categories = categories;
+      this._categories.forEach(obj => {
+        obj.thumbnail = this._baseUrl + '/public/categories/' + obj.thumbnail;
+        this._categoriesService.test404Resources(obj.thumbnail).subscribe(
+          (_) => console.log(obj.thumbnail),
+          error => {
+            if (error.status === 404) {
+              obj.thumbnail = 'assets/images/no_preview_category.png';
+            }
+          }
+        );
       });
+    });
   }
 
   /**
    * Function to navigate to current category
    */
   navigate(id: string): void {
-    this._router.navigate([ '/category', id ]);
+    this._router.navigate(['/category', id]);
   }
 
 }

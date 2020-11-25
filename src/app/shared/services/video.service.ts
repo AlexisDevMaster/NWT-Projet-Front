@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
 import { environment } from '../../../environments/environment';
-import { Observable } from 'rxjs';
+import {Observable, throwError} from 'rxjs';
 import { Video } from '../interfaces/video';
-import { defaultIfEmpty, filter, map } from 'rxjs/operators';
+import {catchError, defaultIfEmpty, filter, map} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -69,6 +69,17 @@ export class VideoService {
       .pipe(
         filter(_ => !!_),
         defaultIfEmpty(this._defaultVideo)
+      );
+  }
+
+  test404Resources(query: string): Observable<any> {
+    return this._http
+      .get(query)
+      .pipe(
+        map((_) => console.log(_)),
+        catchError((err: HttpErrorResponse) => {
+          return throwError(err);
+        })
       );
   }
 

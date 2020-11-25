@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
 import { environment } from '../../../environments/environment';
-import { Observable } from 'rxjs';
+import {Observable, throwError} from 'rxjs';
 import { Category } from '../interfaces/category';
-import { defaultIfEmpty, filter, map } from 'rxjs/operators';
+import {catchError, defaultIfEmpty, filter, map} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -37,6 +37,17 @@ export class CategoryService {
    */
   get defaultCategory(): Category {
     return this._defaultCategory;
+  }
+
+  test404Resources(query: string): Observable<any> {
+    return this._http
+      .get(query)
+      .pipe(
+        map(() => {}),
+        catchError((err: HttpErrorResponse) => {
+          return throwError(err);
+        })
+      );
   }
 
   /**

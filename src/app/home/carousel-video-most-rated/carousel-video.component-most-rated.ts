@@ -1,8 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {OwlOptions} from 'ngx-owl-carousel-o';
 import {Video} from '../../shared/interfaces/video';
 import {Router} from '@angular/router';
 import {VideoService} from '../../shared/services/video.service';
+import {environment} from '../../../environments/environment';
+import {User} from '../../shared/interfaces/user';
+import {UserService} from '../../shared/services/user.service';
+import {AuthService} from '../../shared/services/auth.service';
 
 
 @Component({
@@ -15,10 +19,17 @@ export class CarouselVideoComponentMostRatedComponent implements OnInit {
 
   // private property to store people value
   private _videos: Video[];
+  private _users: User[];
+  private _baseUrl: string;
 
-
-  constructor(private _router: Router, private _videosService: VideoService) {
+  constructor(private _router: Router, private _videosService: VideoService, private _usersService: UserService) {
     this._videos = [];
+    this._users = [];
+
+    this._baseUrl = `${environment.backend.protocol}://${environment.backend.host}`;
+    if (environment.backend.port) {
+      this._baseUrl += `:${environment.backend.port}`;
+    }
   }
 
   customOptions: OwlOptions = {
@@ -26,7 +37,7 @@ export class CarouselVideoComponentMostRatedComponent implements OnInit {
     mouseDrag: true,
     touchDrag: true,
     pullDrag: true,
-    dots: true,
+    dots: false,
     navSpeed: 600,
     margin: 10,
     autoWidth: true,
@@ -44,6 +55,7 @@ export class CarouselVideoComponentMostRatedComponent implements OnInit {
     },
     nav: false
   };
+  isDragging: boolean;
 
   /**
    * Returns private property _categories
@@ -53,12 +65,40 @@ export class CarouselVideoComponentMostRatedComponent implements OnInit {
   }
 
   /**
+   * Returns private property _categories
+   */
+  get users(): User[] {
+    return this._users;
+  }
+
+  /**
+   * Returns private property _categories
+   */
+  user(username: string): User {
+    return this._users.find(obj => obj.username === username);
+  }
+
+  /**
    * OnInit implementation
    */
   ngOnInit(): void {
     this._videosService
       .fetch().subscribe((videos: Video[]) => {
       this._videos = videos;
+      this._videos.forEach(obj => {
+        obj.thumbnail_path = this._baseUrl + '/public/videos/' + obj.thumbnail_path;
+        this._videosService.test404Resources(obj.thumbnail_path).subscribe(
+          (_) => console.log(obj.thumbnail_path),
+          error => {
+            if (error.status === 404) {
+              obj.thumbnail_path = 'assets/images/no_preview.png';
+            }
+          }
+        );
+        this._usersService.fetchOneByUsername(obj.author).subscribe((user: User) => {
+          this._users.push(user);
+        });
+      });
       this._videos.sort((a, b) => ((100 * b.nb_like / (b.nb_like + b.nb_dislike)) - ((100 * a.nb_like / (a.nb_like + a.nb_dislike)))));
     });
   }
@@ -67,6 +107,6 @@ export class CarouselVideoComponentMostRatedComponent implements OnInit {
    * Function to navigate to current category
    */
   navigate(url: string): void {
-    this._router.navigate([ '/video', url ]);
+    this._router.navigate(['/video', url]);
   }
 }
