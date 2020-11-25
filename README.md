@@ -2,6 +2,17 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.1.3.
 
+## Installation
+
+```bash
+$ yarn install
+```
+Launch the Angular CLI server on the top right, then navigate to `http://localhost:4200/`
+
+####If you don't have Angular CLI server :
+
+`Add Configuration` or `Edit configuration` on the top right, press the `+` on the top left then add a new npm. Keep the `run` thing and select `start`  in the script field.
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
