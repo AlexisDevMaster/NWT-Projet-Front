@@ -22,10 +22,13 @@ export class CarouselVideoComponentMostRecentComponent implements OnInit {
 
   private _baseUrl: string;
 
+  isDragging: boolean;
+
+
   constructor(private _router: Router, private _videosService: VideoService, private _usersService: UserService) {
     this._videos = [];
     this._users = [];
-
+    this.isDragging = false;
     this._baseUrl = `${environment.backend.protocol}://${environment.backend.host}`;
     if (environment.backend.port) {
       this._baseUrl += `:${environment.backend.port}`;
@@ -56,7 +59,6 @@ export class CarouselVideoComponentMostRecentComponent implements OnInit {
     },
     nav: false
   };
-  isDragging: boolean;
 
   /**
    * Returns private property _categories

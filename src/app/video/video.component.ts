@@ -27,11 +27,13 @@ export class VideoComponent implements OnInit {
   private _backendURL: any;
   private _baseUrl: string;
   private _isSubscribed: number;
+  private _isLiked: number;
 
   constructor(private _router: Router, private _activatedRoute: ActivatedRoute, private _videoService: VideoService,
               private _userService: UserService, private _authService: AuthService) {
     this._url = this._activatedRoute.snapshot.url.pop().path;
     this._backendURL = {};
+    this._isLiked = 0;
     this._baseUrl = `${environment.backend.protocol}://${environment.backend.host}`;
     if (environment.backend.port) {
       this._baseUrl += `:${environment.backend.port}`;
@@ -96,6 +98,10 @@ export class VideoComponent implements OnInit {
                 const testIfSubscribe = this._connectedUser.subscriptions.find(obj => obj.username === this._user.username);
                 if (testIfSubscribe) {
                   this._isSubscribed = 1;
+                  if(this._connectedUser.likes.find(obj => obj.url === video.url)){
+
+                  }
+
                 } else {
                   this._isSubscribed = -1;
                 }

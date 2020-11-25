@@ -20,12 +20,10 @@
                        data-original-title="{{ v.author }}">
                       {{ v.author }}
                     </a>
-<!--                    {% if v.author_verified == 1 %}-->
                     <a title="" data-placement="top" data-toggle="tooltip" href=""
                        data-original-title="Verified" *ngIf="user(v.author).verified===true">
                       <mat-icon class="fas text-success user-verified-size">verified_user</mat-icon>
                     </a>
-<!--                    {% endif %}-->
                   </div>
                   <div class="video-view">
                      {{v.nb_view}}  views &nbsp;

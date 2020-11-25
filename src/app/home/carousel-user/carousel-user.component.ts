@@ -22,6 +22,7 @@ export class CarouselUserComponent implements OnInit {
 
   constructor(private _router: Router, private _userService: UserService, private _authService: AuthService, private _usersService: UserService) {
     this._users = [];
+    this._isSubscribed = [];
     this._baseUrl = `${environment.backend.protocol}://${environment.backend.host}`;
     if (environment.backend.port) {
       this._baseUrl += `:${environment.backend.port}`;
@@ -69,6 +70,14 @@ export class CarouselUserComponent implements OnInit {
     return this._isSubscribed;
   }
 
+  testIsSubscribed(username: string): boolean{
+    if(this._connectedUser.subscriptions.find(o => o.username === username)){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
   ngOnInit(): void {
     this._userService
       .fetch().subscribe((users: User[]) => {
@@ -87,6 +96,7 @@ export class CarouselUserComponent implements OnInit {
 
       if (this.isLogedIn()) {
         this._users.forEach((obj2, index) => {
+          console.log(this._connectedUser.subscriptions.find(o => o.username === obj2.username));
           this._isSubscribed.push(this._connectedUser.subscriptions.find(o => o.username === obj2.username));
         });
       }
@@ -94,7 +104,6 @@ export class CarouselUserComponent implements OnInit {
   }
 
   isLogedIn(): boolean {
-    // return false;
     return this._authService.hasStoredToken();
   }
 

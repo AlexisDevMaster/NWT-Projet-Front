@@ -7,10 +7,9 @@
             <div class="channels-card">
               <div class="channels-card-image">
                 <a href="#"><img class="img-fluid mb-2" src="{{user.thumbnail}}" alt=""></a>
-                <div class="channels-card-image-btn">
-                  <button type="button" class="btn btn-danger btn-sm">Subscribe</button>
-                  <button type="button" class="btn btn-outline-secondary btn-sm" *ngIf="isSubscribed === true;">Subscribed</button>
-                  <button class="btn btn-outline-danger btn-sm" type="button" *ngIf="isSubscribed === true;" >Subscribe</button>
+                <div class="channels-card-image-btn" *ngIf="isLogedIn">
+                  <button type="button" class="btn btn-outline-secondary btn-sm" *ngIf="testIsSubscribed(user.username) === true;">Subscribed</button>
+                  <button class="btn btn-outline-danger btn-sm" type="button" *ngIf="testIsSubscribed(user.username) === false;" >Subscribe</button>
                 </div>
               </div>
               <div class="channels-card-body">

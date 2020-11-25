@@ -20,12 +20,13 @@ export class CarouselVideoComponentMostRatedComponent implements OnInit {
   // private property to store people value
   private _videos: Video[];
   private _users: User[];
+  isDragging: boolean;
   private _baseUrl: string;
 
   constructor(private _router: Router, private _videosService: VideoService, private _usersService: UserService) {
     this._videos = [];
     this._users = [];
-
+    this.isDragging = false;
     this._baseUrl = `${environment.backend.protocol}://${environment.backend.host}`;
     if (environment.backend.port) {
       this._baseUrl += `:${environment.backend.port}`;
@@ -55,7 +56,6 @@ export class CarouselVideoComponentMostRatedComponent implements OnInit {
     },
     nav: false
   };
-  isDragging: boolean;
 
   /**
    * Returns private property _categories

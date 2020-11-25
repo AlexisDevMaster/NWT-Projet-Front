@@ -29,6 +29,7 @@ nwt-carousel-video-most-rated{
 }
 .video-card-list .video-card-body .video-title a {
   font-size: 13px;
+  color: white;
 }
 .video-card-list .video-card-body .video-title {
   line-height: 17px;

@@ -7,7 +7,7 @@ import {AuthService} from '../shared/services/auth.service';
 @Component({
   selector: 'nwt-ads',
   templateUrl: './ads.component.html',
-  styleUrls: ['./ads.component.scss']
+  styleUrls: ['./ads.component.css']
 })
 export class AdsComponent implements OnInit {
   ads: Add[];
@@ -19,11 +19,11 @@ export class AdsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.loadAds();
+    // this.loadAds();
     this.adsService.currentAdd.subscribe(add => {
       this.newAdd = add;
       if (this.newAdd) {
-        this.loadAds();
+        // this.loadAds();
       }
     });
   }
@@ -47,10 +47,10 @@ export class AdsComponent implements OnInit {
   }
 
   moveUp(add: Add): void {
-    const found = this.ads.find(function(element) {
+    const found = this.ads.find((element) => {
       return element.order === add.order;
     });
-    const foundNext = this.ads.find(function(element) {
+    const foundNext = this.ads.find((element) => {
       return element.order === add.order - 1;
     });
     if (foundNext) {
@@ -75,10 +75,10 @@ export class AdsComponent implements OnInit {
   }
 
   moveDown(add: Add): void {
-    const found = this.ads.find(function(element) {
+    const found = this.ads.find((element) => {
       return element.order === add.order;
     });
-    const foundPrev = this.ads.find(function(element) {
+    const foundPrev = this.ads.find((element) => {
       return element.order === add.order + 1;
     });
     if (foundPrev) {

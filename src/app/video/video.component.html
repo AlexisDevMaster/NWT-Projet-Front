@@ -42,7 +42,7 @@
                         <button
                           class="transparent-button {% if like.value == 1 %}liked-color-button {% else %}gray-color{% endif %}"
                           name="like"
-                          value="{% if like.value is empty %}3{% else %}{{ like.value }{% endif %}">
+                          value="">
                           <mat-icon class="fas">thumb_up</mat-icon>
                         </button>
                         <div class="mt-1 text-nowrap" id="like3-bs3">
@@ -55,7 +55,7 @@
                         <button
                           class="transparent-button {% if like.value == 2 %}disliked-color-button{% else %}gray-color{% endif %}"
                           name="dislike"
-                          value="{% if like.value is empty %}3{% else %}{{ like.value }{% endif %}">
+                          value="">
                           <mat-icon class="fas">thumb_down</mat-icon>
                         </button>
                         <div class="mt-1 text-nowrap" id="dislike3-bs3">
@@ -127,8 +127,8 @@
                   <mat-panel-description>
                   </mat-panel-description>
                 </mat-expansion-panel-header>
-                <ng-template *ngIf="video.description; else noDescription"><p>{{video.description}}</p></ng-template>
-                <ng-template #noDescription><p>No Description</p></ng-template>
+                <p *ngIf="video.description;">{{video.description}}</p>
+                <p *ngIf="!video.description;">No Description</p>
               </mat-expansion-panel>
             </mat-accordion>
 
@@ -141,8 +141,8 @@
                   <mat-panel-description>
                   </mat-panel-description>
                 </mat-expansion-panel-header>
-                <ng-template *ngIf="video.description; else noComment"><p></p></ng-template>
-                <ng-template #noComment><p>No Comments</p></ng-template>
+                <p *ngIf="video.description;">{{video.description}}</p>
+                <p *ngIf="!video.description;">No Comment</p>
               </mat-expansion-panel>
             </mat-accordion>
           </div>
