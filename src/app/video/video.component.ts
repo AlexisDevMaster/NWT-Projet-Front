@@ -105,6 +105,7 @@ export class VideoComponent implements OnInit {
                 } else {
                   this._isSubscribed = -1;
                 }
+                this._isSubscribed = -1;
                 console.log(this._isSubscribed);
               });
             }
